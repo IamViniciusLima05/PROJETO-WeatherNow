@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherNow | Previsão do tempo</title>
+  <meta name="description" content="Previsão do tempo em tempo real de qualquer cidade: temperatura, umidade, vento e os próximos dias.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-ceu="limpo-dia">
+  <main class="app">
+    <header class="topo">
+      <p class="marca">Weather<b>Now</b></p>
+      <form class="busca" id="form-busca" autocomplete="off" role="search">
+        <label class="sr" for="cidade">Buscar cidade</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="cidade" type="search" placeholder="Buscar cidade…" aria-controls="sugestoes" aria-autocomplete="list">
+        <button type="button" id="gps" class="icone" title="Usar minha localização" aria-label="Usar minha localização">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+        </button>
+        <ul class="sugestoes" id="sugestoes" role="listbox" hidden></ul>
+      </form>
+      <div class="unidades" role="group" aria-label="Unidade de temperatura">
+        <button type="button" data-un="c" aria-pressed="true">°C</button>
+        <button type="button" data-un="f" aria-pressed="false">°F</button>
+      </div>
+    </header>
+
+    <nav class="favoritas" id="favoritas" aria-label="Cidades salvas"></nav>
+
+    <section class="agora" id="agora" aria-live="polite">
+      <div class="agora__local">
+        <h1 id="nome-cidade">Carregando…</h1>
+        <p id="regiao"></p>
+        <button type="button" class="fav" id="btn-fav" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>
+          <span>Salvar cidade</span>
+        </button>
+      </div>
+      <div class="agora__principal">
+        <div class="icone-grande" id="icone-agora"></div>
+        <div>
+          <p class="temp" id="temp">--°</p>
+          <p class="condicao" id="condicao">—</p>
+          <p class="minmax" id="minmax"></p>
+        </div>
+      </div>
+      <dl class="detalhes">
+        <div><dt>Sensação</dt><dd id="sensacao">--</dd></div>
+        <div><dt>Umidade</dt><dd id="umidade">--</dd></div>
+        <div><dt>Vento</dt><dd id="vento">--</dd></div>
+        <div><dt>Chuva hoje</dt><dd id="chuva">--</dd></div>
+      </dl>
+      <p class="atualizado" id="atualizado"></p>
+    </section>
+
+    <p class="erro" id="erro" role="alert" hidden></p>
+
+    <section class="bloco">
+      <h2>Próximas horas</h2>
+      <ol class="horas" id="horas"></ol>
+    </section>
+
+    <section class="bloco">
+      <h2>Próximos 7 dias</h2>
+      <ol class="dias" id="dias"></ol>
+    </section>
+
+    <footer class="rodape">Dados meteorológicos: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></footer>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>
